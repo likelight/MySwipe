@@ -1,0 +1,47 @@
+<!DOCTYPE HTML> 
+<html>
+<head>
+<title>Swipe 2</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/> 
+<link href='style.css' rel='stylesheet'/>
+</head>
+<body>
+<h1>Swipe 2</h1>
+<div id='mySwipe' style='max-width:500px;margin:0 auto' class='swipe'>
+  <div class='swipe-wrap'>
+    <div><b>0</b></div>
+    <div><b>1</b></div>
+    <div><b>2</b></div>
+    <div><b>3</b></div>
+    <div><b>4</b></div>
+  </div>
+</div>
+<script src='swipe.js'></script>
+<script>
+
+// pure JS
+var elem = document.getElementById('mySwipe');
+
+window.mySwipe = Swipe(elem, {
+   startSlide: 0,
+   auto: 3000,
+   continuous: true,
+   isDot:true,
+  // disableScroll: true,
+  // stopPropagation: true,
+  // callback: function(index, element) {},
+   transitionEnd: function(index, element) {
+       var dot_collection = document.getElementById("swipe_indicator");
+       var li_collection = dot_collection.getElementsByTagName("li");
+       for(var i = 0; i < li_collection.length; i++){
+           li_collection[i].className = '';
+       }
+       li_collection[index].className = 'active';
+   }
+});
+
+// with jQuery
+// window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
+
+</script>
